@@ -2,6 +2,7 @@ import './App.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCustomerAction, removeCustomerAction } from './store/customerReducer';
 import { fetchCustomers } from './asyncActions/customers';
+import { asyncAddCashAction } from './store/cashReducer';
 
 function App() {
   const dispatch = useDispatch();
@@ -32,7 +33,8 @@ function App() {
     <div className="App">
       <div style={{fontSize: '2rem'}}>{cash}</div>
       <div style={{display: 'flex'}}>
-        <button onClick={() => addMoney(Number(prompt()))}>Пополнить счет</button>
+        {/* <button onClick={() => addMoney(Number(prompt()))}>Пополнить счет</button> */}
+        <button onClick={() => dispatch(asyncAddCashAction(Number(prompt())))}>Пополнить счет</button>
         <button onClick={() => getMoney(Number(prompt()))}>Снять с счета</button>
         <button onClick={() => addCustomer(prompt())}>Добавить клиента</button>
         <button onClick={() => dispatch(fetchCustomers())}>Получить клиентов из базы</button>
